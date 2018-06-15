@@ -1,0 +1,28 @@
+<project name="test" basedir="." default="Jar">
+    
+    <property name="build.dir" value="GMCR"/>
+	<property name="jarname" value="test"/>
+    
+    <target name="prepare">
+		<mkdir  dir="${build.dir}"/>
+		<mkdir  dir="${build.dir}/classes"/>
+		<mkdir  dir="${build.dir}/lib"/>
+	  
+	    <copy todir="${build.dir}/lib">
+			 <fileset dir=".">
+					<include name="*.jar" />
+			  </fileset>
+		 </copy>
+		 
+    </target>
+    
+    <target name="compile" depends="prepare">
+        <javac srcdir="." destdir="${build.dir}/classes">
+          </javac>
+    </target>
+    
+    <target name="Jar" depends="compile">
+      <jar   basedir="${build.dir}"  jarfile="${jarname}.jar"  />
+    </target>
+
+</project>
